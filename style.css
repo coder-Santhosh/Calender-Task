@@ -1,0 +1,623 @@
+*{
+ --bg-color: rgb(37, 32, 32);
+ margin: 0%;
+ padding: 0%;
+ box-sizing: border-box;
+ font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background-color:aliceblue;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.main{
+   position: relative; 
+   /* border: 3px solid navy; */
+   width: 100vw;
+   min-height: 400px;
+   display: flex;
+   border-radius: 15px;
+   margin: auto;
+   padding: 10px;
+   color: white;
+   background-color: var(--bg-color);
+}
+
+.left{
+    width: 60%;
+    padding: 15px;
+    /* border: 1px solid white; */
+    /* color: black;
+    background-color: white; */
+}
+
+.caln{
+    position: relative;
+    /* box-sizing: border-box; */
+    /* border: 3px solid; */
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    border-radius: 5px;
+    color: black;
+    background-color: white;
+}
+
+.caln::after, .caln::before{
+    content: "";
+    position: absolute;
+    top: 50%;
+    /* bottom: 50%; */
+    /* margin: auto; */
+    left: 100%;
+    width: 8px;
+    height: 95%;
+    border-radius: 0 5px 5px 0;
+    background-color: #d3d5d6d7;
+    transform: translateY(-50%);
+}
+
+.caln::before{
+    height: 91%;
+    left: calc(100% + 8px);
+    background-color: rgb(150,150,150);
+}
+
+.month{
+    /* border: 1px solid; */
+    width: 100%;
+    display: flex;
+    height: 70px;
+    align-items: center;
+    justify-content: space-between;
+    text-transform: capitalize;
+    padding: 0 50px;
+    font-size: 1.5rem;
+}
+
+.month .prev, .month .next{
+    cursor: pointer;
+    padding: 3px;
+    /* margin-right: 60px; */
+}
+
+/* .month .next{
+    margin: 0 0 0 60px;
+} */
+
+.month .prev:hover, .month .next:hover{
+    background-color: rgb(102, 139, 240);
+    color: #fff;
+}
+
+.caln .week{
+    /* border: 1px solid; */
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+    text-transform: capitalize;
+    font-size: 1rem;
+    /* font-weight: 545; */
+}
+
+.week div{
+    /* border: 1px solid; */
+    width: calc(100% / 7);
+    /* height: 100%; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.caln .days{
+    width: 100%;
+    /* border: 1px solid;  */
+    /* height: 90px; */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 0 10px;
+    margin-bottom: 22px;
+}
+
+.caln .days .day{
+    height: 75px;
+    width: calc(100% / 7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: back;
+    border: 1.8px solid #f5e6e6;
+    font-size: 1.2em;
+}
+
+.caln .days .activ{
+    position: relative;
+    font-size: 2em;
+    color: #fff;
+    background-color: rgb(31, 187, 214);
+}
+
+.day:not(.prev-date, .next-date):hover{
+    color: #fff;
+    background-color: rgb(31, 187, 214);
+}
+
+.caln .days .prev-date,.caln .days .next-date{
+    color: rgba(235, 42, 42, 0.445);
+}
+
+.activ::before{
+    position: absolute;
+    content: '';
+    /* top: 0;
+    left: 0; */
+    width: 100%;
+    height: 100%;
+    box-shadow: 0 0 10px 2px rgb(11, 47, 163) inset;
+}
+
+.caln .days .task{
+    position: relative;
+}
+
+.caln .days .task::after{
+    position: absolute;
+    content: '';
+    bottom: 15%;
+    width: 80%;
+    height: 4px;
+    margin: auto;
+    background-color: var(--bg-color);
+    border-radius: 30px;
+}
+
+.caln .days .task:hover::after{
+    background-color: #fff;
+}
+
+.caln .days .day.activ.task::after{
+    background-color: #fff;
+}
+
+.caln .move-current{
+    /* border: 1px solid; */
+    width: 100%;
+    /* height: 50px; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding:0 25px 20px;
+    gap: 10px;
+}
+
+.caln .move-current .move{
+    border: 1px solid;
+    border-radius: 12px;
+    display: flex;
+    width: 150px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.caln .move-current .move input{
+    width: 100%;
+    outline: none;
+    height: 23px;
+    border: none;
+    border-radius: 12px;
+    /* left: 15px; */
+    padding: 0 0 0px 15px;
+    /* font-size: 1rem; */
+
+}
+
+.caln .move-current .move input::placeholder{
+    text-transform: uppercase;
+    /* position: absolute;
+    margin-left: 15px; */
+}
+
+.caln .move-current button{
+    text-transform: capitalize;
+    cursor: pointer;
+    background-color: rgba(37, 32, 32, 0.637);
+    color: #fff;    
+}
+
+.caln .move-current .move .go{
+    border: none;
+    /* border-left: 0px solid; */
+    border-radius: 0 11px 11px 0;
+    padding: 5px;
+}
+
+.caln .move-current .today{
+    border: 2px solid;
+    border-radius: 7px;
+    padding: 6px 10px;
+    font-size: 1rem;
+}
+
+.flicker {
+    animation: flickerAnimation 3s linear;
+    transition: opacity 1s ease-in-out;
+    /* background-color: black; */
+}
+
+@keyframes flickerAnimation {
+    0%, 100% {
+        opacity: 1;
+        color: rgb(31, 187, 214);
+        /* color: #fff; */
+        font-size: 1.9em;
+    }
+    50% ,80%{
+        opacity: 0.8;
+        color: rgb(31,187, 214);
+        font-size: 3em;
+        /* background-color: rgb(31, 187, 214); */
+    }
+}
+
+.right{
+    /* border: 2px solid; */
+    position: relative;
+    /* padding: 15px; */
+    width: 40%;
+    min-height: 100%;
+    overflow: hidden;
+}
+
+.right .today-date{
+    /* border: 2px solid; */
+    min-height: 60px;
+    min-width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px 0;
+    padding-left: 50px;
+    /* padding-right: 50px; */
+    /* justify-content: space-between; */ 
+    /* align-items: center; */
+    align-items: baseline;
+    font-size: 2rem;
+    gap: 40px;
+    text-transform: capitalize;
+    margin-bottom: 40px;
+    margin-top: 20px;
+}
+
+.right .today-date .event-date{
+    font-size: 1rem;
+    /* font-size: calc(0.5rem + 1vw); */
+    font-weight: 600;
+    letter-spacing: 1.4px;
+    color: #a09ea1;
+    /* color: rgba(158, 155, 156, 0.993); */
+}
+
+.right .events{
+    /* border: 2px solid; */
+    max-width: 100%;
+    height: 100%;
+    max-height: 370px;
+    /* overflow: auto; */
+    overflow-x: hidden;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 5px 0 5px 5px;
+}
+
+.events .event{
+    /* border: 1px solid; */
+    position: relative;
+    min-width: 100%;
+    min-height: 80px;
+    display: flex;
+    /* align-items: center; */
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+    padding: 0 20px;
+    cursor: pointer;
+    background: linear-gradient(90deg, #4f546b, transparent);
+}
+
+.events .event:nth-child(even){
+    background: transparent;
+}
+
+.events .event:hover{
+    background: linear-gradient(120deg, #b0bae9, transparent);
+}
+.events .event .title{
+    /* border: 1px solid; */
+    display: flex;
+    align-items: center;
+    /* gap: 10px; */
+    text-transform: capitalize;
+    pointer-events: none;
+}
+
+.events .event .title .e-title{
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-left: 15px;
+}
+
+.events .event .title i{
+    color: #d07cf7;
+    font-size: .5rem;
+}
+
+.events .event:hover .title i,
+.events .event:hover .e-time{
+    color: #fff;
+}
+
+.events .event .e-time{
+    font-size: .9rem;
+    font-weight: 400;
+    color: #da8bff;
+    /* color: #c493b3d5; */
+    margin-left: 23px;
+    text-transform: capitalize;
+    pointer-events: none;
+}
+
+.events .event::after{
+    content: ">";
+    position: absolute;
+    width: 30px;
+    top: 50%;
+    right: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    opacity: 0.7;
+    transform: translateY(-50%);
+}
+
+.events .event:hover::after{
+    display: flex;
+}
+
+.events .no-event{
+    /* border: 1px solid; */
+    width: 100%;
+    height: 100%;
+    text-transform: capitalize;
+    font-size: 1.7rem;
+    font-weight: 800;
+    /* padding-top: 100px; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #a09ea1;;
+}
+
+.add-event{
+    /* border: 1px solid; */
+    border-radius: 7px;
+    position: absolute;
+    bottom: 70px;
+    left: 50%;
+    max-height: 0px;
+    width: 85%;
+    overflow: hidden;
+    background-color: #fff;
+    transform: translateX(-50%);
+    transition: max-height 0.3s ease-in-out;
+}
+
+.add-event.active{
+    max-height: 400px;
+}
+
+.add-event-head{
+    /* border: 1px solid; */
+    color: #000;
+    min-width: 100%;
+    min-height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    text-transform: capitalize;
+    border-bottom: 1px solid #f8e6e6;
+}
+
+.add-event-head .close{
+    /* border: 1px solid; */
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 1.5px;
+}
+
+.add-event-head .close:hover{
+    color: #db381b;
+}
+
+.add-event-head .title{
+    font-size: 1.3rem;
+    font-weight: 500;
+}
+
+.add-event-body{
+    /* border: 1px solid blue; */
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px 20px 25px 20px;
+}
+
+.add-event-body .add-event-ip{
+    /* border: 1px solid blue; */
+    width: 100%;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.add-event-body .add-event-ip input{
+    width: 100%;
+    height: 100%;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid #f7f3f3;
+    padding: 0 5px;
+    font-size: 1rem;
+    font-weight: 400;
+    text-transform: capitalize;
+}
+
+.add-event-body .add-event-ip input::placeholder{
+    color: #a5a5a5;
+    text-transform: capitalize;
+}
+
+.add-event-body .add-event-ip input:focus,
+.add-event-body .add-event-ip input:focus::placeholder{
+    border-color: #f38585;
+    color:rgb(37, 37, 39);
+
+}
+
+.add-event-footer{
+    /* border: 1px solid blue; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0px 0 20px 0;
+    /* margin-bottom: 20px; */
+}
+
+.add-event-btn{
+    /* height: 25px; */
+    text-transform: uppercase;
+    font-size: 1rem;
+    font-weight: 600;
+    outline: none;
+    border: none;
+    color: #fff;
+    background-color: #d07cf7;
+    padding: 5px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.add-event-btn:hover{
+    background-color:#4f546b;
+}
+
+.add-event-form-btn{
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #f5e6e6;
+    background-color: transparent;
+    border: 2px solid gainsboro;
+    border-radius: 50%;
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+.add-event-form-btn:hover{
+    opacity: 1;
+}
+
+.add-event-form-btn i{
+    pointer-events: none;
+}
+
+/* media queries */
+@media(max-width: 1000px){
+    body{
+        align-items: flex-start;
+        justify-content: flex-start;
+    }
+
+    .main{
+        min-height: 100vh;
+        border-radius: 0;
+        flex-direction: column;
+    }
+
+    .main .left, .main .right{
+        width: 100%;
+        height: 100%;
+        padding: 20px 10px;
+    }
+
+    .caln::before, .caln::after{
+        top: 100%;
+        /* bottom: 100%; */
+        /* margin: auto; */
+        left: 50%;
+        /* right: 50%; */
+        width: 97%;
+        height: 8px;
+        border-radius: 0 0px 5px 5px;
+        background-color: #d3d5d6d7;
+        transform: translateX(-50%);
+    }
+
+    .caln::before{
+        width: 93%;
+        top: calc(100% + 8px);
+        background-color: rgb(150,150,150);
+    }
+
+    .events {
+        margin-bottom: 400px;
+    }
+    
+    /* .add-event {
+        bottom: 100px; 
+    } */
+}
+
+@media(max-width: 600px){
+    .caln .month{
+        /* border: 1px solid; */
+        height: 60px;
+    }
+
+    .caln .week{
+        /* border: 1px solid; */
+        height: 40px;
+    }
+
+    .caln .days .day{
+        /* border: 1px solid darkorange; */
+        height: 70px;
+        font-size: 1rem;
+        font-weight: 500;
+    }
+
+    .caln .days .day.activ{
+        font-size: 1.6rem;
+    }
+}
